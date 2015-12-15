@@ -64,8 +64,13 @@
   <ItemGroup>
     <Compile Include="Assets\CharacterManager.cs" />
     <Compile Include="Assets\Destroyer.cs" />
+    <Compile Include="Assets\GameOverManager.cs" />
     <Compile Include="Assets\LevelEnderManager.cs" />
+    <Compile Include="Assets\PizzaScript.cs" />
+    <Compile Include="Assets\RobotFireManager.cs" />
+    <Compile Include="Assets\RotateScript.cs" />
     <Compile Include="Assets\ShieldRobotManager.cs" />
+    <Compile Include="Assets\WinGameManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

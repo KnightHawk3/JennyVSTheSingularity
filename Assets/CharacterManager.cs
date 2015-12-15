@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
 
 public class CharacterManager : MonoBehaviour {
 
+    public static int score = 0;
     private Rigidbody2D rb;
     public float maxspeed = 40;
     public float jumpHeight = 300;
@@ -23,13 +25,14 @@ public class CharacterManager : MonoBehaviour {
 
     void loseGame() {
         //TODO: Write this
-        Debug.Log("");
+        SceneManager.LoadScene("GameOver");
     }
 
     // Use this for initialization
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        score = 0;
     }
 
     bool hasFlag(Actions flag) {
@@ -43,14 +46,15 @@ public class CharacterManager : MonoBehaviour {
                 state = state ^ Actions.KICK;
                 // TODO: Kill animation
                 Destroy(collision.gameObject);
+                score++;
             } else {
                 loseGame();
             }
         } else if (collision.gameObject.tag == "Ground") {
-                if (hasFlag(Actions.JUMP)) {
-                    Debug.Log("Jump Collision");
-                    state = state ^ Actions.JUMP;
-                }
+            if (hasFlag(Actions.JUMP)) {
+                Debug.Log("Jump Collision");
+                state = state ^ Actions.JUMP;
+            }
             if (hasFlag(Actions.KICK)) {
                 Debug.Log("Kick Collision");
                 state = state ^ Actions.KICK;
@@ -101,7 +105,7 @@ public class CharacterManager : MonoBehaviour {
             } else {
                 state = Actions.IDLE;
             }
-        } else if(state == Actions.STOPPING) {
+        } else if (state == Actions.STOPPING) {
             state = Actions.IDLE;
         }
         if (hasFlag(Actions.KICK)) {
